@@ -21,7 +21,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Knack\\ZeroBounce\\": "src/"
+      "Knack\\ZeroBounce\\": "src/Knack/ZeroBounce"
     }
   },
   "autoload-dev": {

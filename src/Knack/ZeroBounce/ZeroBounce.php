@@ -1,6 +1,6 @@
 <?php namespace Knack\ZeroBounce;
 
-require_once 'ZeroBounceAPI.php';
+require_once __DIR__ . '/../../ZeroBounceAPI.php';
 
 use Exception;
 use ZeroBounceAPI;
