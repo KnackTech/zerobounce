@@ -12,7 +12,8 @@
   "require": {
     "php": ">=7.0.0",
     "ext-curl": "*",
-    "nesbot/carbon": "1.38.4"
+    "nesbot/carbon": "1.38.4",
+    "ext-json": "*"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",
@@ -21,7 +22,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Knack\\ZeroBounce\\": "src/"
+      "Knack\\ZeroBounce\\": "src/Knack/ZeroBounce"
     }
   },
   "autoload-dev": {
