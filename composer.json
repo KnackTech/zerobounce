@@ -1,0 +1,32 @@
+{
+  "name": "knack/zerobounce",
+  "description": "Knack Zerobounce API wrapper",
+  "type": "package",
+  "license": "mit",
+  "authors": [
+    {
+      "name": "Doug Woodrow",
+      "email": "doug@joinknack.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.0.0",
+    "ext-curl": "*",
+    "nesbot/carbon": "1.38.4"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-master",
+    "phpunit/phpunit": "^6",
+    "vlucas/phpdotenv": "^3.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "Knack\\ZeroBounce\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Knack\\ZeroBounce\\Tests\\": "tests/"
+    }
+  }
+}
