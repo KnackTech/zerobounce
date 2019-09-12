@@ -1,4 +1,4 @@
-<?php namespace Knack\ZeroBounce;
+<?php namespace Knack\ZeroBounce\Models;
 
 use Carbon\Carbon;
 

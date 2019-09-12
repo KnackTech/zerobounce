@@ -1,8 +1,9 @@
-<?php namespace Knack\ZeroBounce;
+<?php namespace Knack\ZeroBounce\API;
 
-require_once __DIR__ . '/../../ZeroBounceAPI.php';
+require_once 'ZeroBounceAPI.php';
 
 use Exception;
+use Knack\ZeroBounce\Models\Response;
 use ZeroBounceAPI;
 
 class ZeroBounce {
@@ -62,6 +63,6 @@ class ZeroBounce {
      * @return float
      */
     public function getAccountCredits(): int {
-        return $this->zba->get_credits()['Credits'];
+        return $this->zba->getCredits()['Credits'];
     }
 }
