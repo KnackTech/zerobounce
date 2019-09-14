@@ -97,6 +97,9 @@ class Response {
      */
     public $zipcode;
 
+    /**
+     * @var Carbon
+     */
     public $processedAt;
 
     /**
