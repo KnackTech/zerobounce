@@ -1,44 +1,105 @@
 <?php namespace Knack\ZeroBounce\Models;
 
 use Carbon\Carbon;
+use Knack\ZeroBounce\Enums\GenderEnum;
+use Knack\ZeroBounce\Enums\StatusEnum;
+use Knack\ZeroBounce\Enums\SubStatusEnum;
 
 class Response {
+
+    /**
+     * @var string
+     */
     public $address;
 
+    /**
+     * @var StatusEnum
+     */
     public $status;
 
+    /**
+     * @var SubStatusEnum
+     */
     public $subStatus;
 
+    /**
+     * @var string
+     */
     public $account;
 
+    /**
+     * @var string
+     */
     public $domain;
 
+    /**
+     * @var string
+     */
     public $didYouMean;
 
+    /**
+     * @var string
+     */
     public $domainAgeDays;
 
+    /**
+     * @var bool
+     */
     public $freeEmail;
 
+    /**
+     * @var bool
+     */
     public $mxFound;
 
+    /**
+     * @var string
+     */
     public $mxRecord;
 
+    /**
+     * @var string
+     */
     public $smtpProvider;
 
+    /**
+     * @var string
+     */
     public $firstname;
 
+    /**
+     * @var string
+     */
     public $lastname;
 
+    /**
+     * @var GenderEnum
+     */
     public $gender;
 
+    /**
+     * @var string
+     */
     public $country;
 
+    /**
+     * @var string
+     */
     public $region;
 
+    /**
+     * @var string
+     */
     public $city;
 
+    /**
+     * @var string
+     */
     public $zipcode;
 
+    /**
+     * @var Carbon
+     */
     public $processedAt;
 
     /**
@@ -66,8 +127,8 @@ class Response {
      */
     public function __construct( $address, $status, $subStatus, $account, $domain, $didYouMean, $domainAgeDays, $freeEmail, $mxFound, $mxRecord, $smtpProvider, $firstname, $lastname, $gender, $country, $region, $city, $zipcode, $processedAt ) {
         $this->address       = $address;
-        $this->status        = $status;
-        $this->subStatus     = $subStatus;
+        $this->status        = StatusEnum::from($status);
+        $this->subStatus     = SubStatusEnum::from($subStatus);
         $this->account       = $account;
         $this->domain        = $domain;
         $this->didYouMean    = $didYouMean;
@@ -78,7 +139,7 @@ class Response {
         $this->smtpProvider  = $smtpProvider;
         $this->firstname     = $firstname;
         $this->lastname      = $lastname;
-        $this->gender        = $gender;
+        $this->gender        = GenderEnum::from($gender);
         $this->country       = $country;
         $this->region        = $region;
         $this->city          = $city;

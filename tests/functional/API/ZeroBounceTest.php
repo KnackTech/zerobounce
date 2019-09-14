@@ -2,6 +2,7 @@
 
 use Dotenv\Dotenv;
 use Knack\ZeroBounce\API\ZeroBounce;
+use Knack\ZeroBounce\Enums\StatusEnum;
 use PHPUnit\Framework\TestCase;
 
 final class ZeroBounceTest extends TestCase {
@@ -12,7 +13,7 @@ final class ZeroBounceTest extends TestCase {
      */
     public function setUp() {
         parent::setUp();
-        $dotenv = Dotenv::create( __DIR__ . '/../../' );
+        $dotenv = Dotenv::create( __DIR__ . '/../../../' );
         $dotenv->load();
 
         $this->zeroBounce = new ZeroBounce( getenv( 'ZEROBOUNCE_API_KEY' ) );
@@ -25,7 +26,7 @@ final class ZeroBounceTest extends TestCase {
         $response = $this->zeroBounce->validate( 'valid@example.com', '99.110.204.1' );
 
         $this->assertNotNull( $response );
-        $this->assertEquals( 'valid', $response->status );
+        $this->assertEquals( StatusEnum::VALID, $response->status );
     }
 
     /**
@@ -35,7 +36,7 @@ final class ZeroBounceTest extends TestCase {
         $response = $this->zeroBounce->validate( 'valid@example.com' );
 
         $this->assertNotNull( $response );
-        $this->assertEquals( 'valid', $response->status );
+        $this->assertEquals( StatusEnum::VALID, $response->status );
     }
 
     /**
