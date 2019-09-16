@@ -11,8 +11,8 @@ class ZeroBounceServiceProvider extends ServiceProvider {
      * @return void
      */
     public function register() {
-        $this->app->singleton( ZeroBounce::class, function ( $app ) {
-            return new ZeroBounce( env( 'ZEROBOUNCE_API_KEY' ) );
+        $this->app->singleton( ZeroBounce::class, static function ( $app ) {
+            return new ZeroBounce( getenv( 'ZEROBOUNCE_API_KEY' ) );
         } );
     }
 
