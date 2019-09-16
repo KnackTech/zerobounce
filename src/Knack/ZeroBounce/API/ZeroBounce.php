@@ -1,4 +1,18 @@
-<?php namespace Knack\ZeroBounce\API;
+<?php
+
+/**
+ * The ZeroBounce wrapper for the ZeroBounce API
+ *
+ * PHP Version 7.0
+ *
+ * @category Providers
+ * @package  Knack\ZeroBounce\Providers
+ * @author   Doug Woodrow <doug@joinknack.com>
+ * @license  https://github.com/KnackTech/zerobounce/blob/develop/LICENSE MIT License
+ * @link     https://joinknack.com
+ */
+
+namespace Knack\ZeroBounce\API;
 
 require_once 'ZeroBounceAPI.php';
 
@@ -8,31 +22,43 @@ use Knack\ZeroBounce\Exceptions\EmptyAPIKeyException;
 use Knack\ZeroBounce\Models\Response;
 use ZeroBounceAPI;
 
-class ZeroBounce {
-    private $zeroBounceAPI;
+/**
+ * Class ZeroBounceService
+ *
+ * @category Providers
+ * @package  Knack\ZeroBounce\API
+ * @author   Doug Woodrow <doug@joinknack.com>
+ * @license  https://github.com/KnackTech/zerobounce/blob/develop/LICENSE MIT License
+ * @link     https://joinknack.com
+ */
+class ZeroBounce
+{
+    private $_zeroBounceAPI;
 
     /**
      * ZeroBounce constructor.
      *
-     * @param string $apiKey
+     * @param string $apiKey API key to init with
      */
-    public function __construct( string $apiKey ) {
-        $this->zeroBounceAPI = new ZeroBounceAPI( $apiKey );
+    public function __construct(string $apiKey)
+    {
+        $this->zeroBounceAPI = new ZeroBounceAPI($apiKey);
     }
 
     /**
      * Validates an email address, optionally passed with an IP Address
      * to verify the email address against.
      *
-     * @param string $emailAddress
-     * @param string $ipAddress
+     * @param string $emailAddress email address to validate
+     * @param string $ipAddress    IP address to co-validate
      *
      * @throws ZeroBounceException
      * @return Response
      */
-    public function validate( string $emailAddress, string $ipAddress = '' ) {
+    public function validate(string $emailAddress, string $ipAddress = ''): Response
+    {
         try {
-            $validation = $this->zeroBounceAPI->validate( $emailAddress, $ipAddress );
+            $validation = $this->_zeroBounceAPI->validate($emailAddress, $ipAddress);
 
             $response = new Response(
                 $validation['address'],
@@ -57,7 +83,7 @@ class ZeroBounce {
             );
 
             return $response;
-        } catch ( Exception $e ) {
+        } catch (Exception $e) {
             throw new ZeroBounceException($e->getMessage(), $e->getCode());
         }
     }
@@ -67,7 +93,12 @@ class ZeroBounce {
      *
      * @return int
      */
-    public function getAccountCredits(): int {
-        return $this->zeroBounceAPI->getCredits()['Credits'];
+    public function getAccountCredits(): int
+    {
+        try {
+            return $this->_zeroBounceAPI->getCredits()['Credits'];
+        } catch (Exception $e) {
+            return null;
+        }
     }
 }

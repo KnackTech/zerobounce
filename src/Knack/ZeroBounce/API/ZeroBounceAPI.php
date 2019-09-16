@@ -5,65 +5,83 @@ use Knack\ZeroBounce\Exceptions\EmptyAPIKeyException;
 use Knack\ZeroBounce\Exceptions\ResponseException;
 use Knack\ZeroBounce\Utilities\Environment;
 
-class ZeroBounceAPI {
-    private $client;
+/**
+ * Class ZeroBounceAPI
+ */
+class ZeroBounceAPI
+{
+    private $_client;
 
-    private $key;
+    private $_key;
 
-    private $baseUrl = 'https://api.zerobounce.net/v2/';
+    private $_baseURL = 'https://api.zerobounce.net/v2/';
 
-    public function __construct( $key ) {
-        $this->key    = $key;
-        $this->client = new Client();
+    /**
+     * ZeroBounceAPI constructor.
+     *
+     * @param string $key the API Key
+     */
+    public function __construct($key)
+    {
+        $this->_key    = $key;
+        $this->_client = new Client();
     }
 
     /**
      * This function is used for authentication and HTTP API calls.
      *
-     * @param $method
-     * @param array $params
+     * @param string $method the method to execute
+     * @param array  $params the params to pass to the call
      *
      * @return mixed
      */
-    private function apiCall( $method, array $params ): array {
-        if ( empty( $this->key ) ) {
-            throw new EmptyAPIKeyException( 'Invalid ZeroBounce API key' );
+    private function apiCall($method, array $params): array
+    {
+        if (empty($this->key)) {
+            throw new EmptyAPIKeyException('Invalid ZeroBounce API key');
         }
 
         $params['api_key'] = $this->key;
-        $paramsURI         = http_build_query( $params );
+        $paramsURI         = http_build_query($params);
         $url               = "{$this->baseUrl}{$method}?{$paramsURI}";
 
-        $response = $this->client->get( $url, [
-            'timeout' => Environment::get( 'ZEROBOUNCE_HTTP_TIMEOUT' ) ? (float) Environment::get( 'ZEROBOUNCE_HTTP_TIMEOUT' ) : 3.0
-        ] );
+        $response = $this->client->get($url, [
+            'timeout' => Environment::get('ZEROBOUNCE_HTTP_TIMEOUT') ? (float) Environment::get('ZEROBOUNCE_HTTP_TIMEOUT') : 3.0
+        ]);
 
-        if ( $response->getStatusCode() === 200 ) {
-            return json_decode( $response->getBody(), true );
+        if ($response->getStatusCode() === 200) {
+            return json_decode($response->getBody(), true);
         }
 
-        throw new ResponseException( $response['error'], 2 );
+        throw new ResponseException($response['error'], 2);
     }
 
     /**
      * Wrapper for apiCall/getCredits
+     *
+     * @return array
      */
-    public function getCredits() {
-        return $this->apiCall( 'getcredits', [] );
+    public function getCredits(): array
+    {
+        return $this->_apiCall('getcredits', []);
     }
 
     /**
      * Wrapper for apiCall/validate
      *
-     * @param $email
-     * @param $ip
+     * @param string $email the email address to validate
+     * @param string $ip    tge IP address to validate
      *
      * @return array|mixed
      */
-    public function validate( $email, $ip ) {
-        return $this->apiCall( 'validate', [
+    public function validate($email, $ip): array
+    {
+        return $this->_apiCall(
+            'validate',
+            [
             'email'      => $email,
             'ip_address' => $ip
-        ] );
+            ]
+        );
     }
 }
