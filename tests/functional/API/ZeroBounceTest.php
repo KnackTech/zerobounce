@@ -3,6 +3,7 @@
 use Dotenv\Dotenv;
 use Knack\ZeroBounce\API\ZeroBounce;
 use Knack\ZeroBounce\Enums\StatusEnum;
+use Knack\ZeroBounce\Exceptions\EmptyAPIKeyException;
 use PHPUnit\Framework\TestCase;
 
 final class ZeroBounceTest extends TestCase {
@@ -17,6 +18,11 @@ final class ZeroBounceTest extends TestCase {
         $dotenv->load();
 
         $this->zeroBounce = new ZeroBounce( getenv( 'ZEROBOUNCE_API_KEY' ) );
+    }
+
+    public function testEmptyAPIKeyThrowsException() {
+        $this->expectException( EmptyAPIKeyException::class );
+        new ZeroBounce( '' );
     }
 
     /**

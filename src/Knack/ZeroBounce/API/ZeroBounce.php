@@ -3,11 +3,12 @@
 require_once 'ZeroBounceAPI.php';
 
 use Exception;
+use Knack\ZeroBounce\Exceptions\EmptyAPIKeyException;
 use Knack\ZeroBounce\Models\Response;
 use ZeroBounceAPI;
 
 class ZeroBounce {
-    private $zba;
+    private $zeroBounceAPI;
 
     /**
      * ZeroBounce constructor.
@@ -15,7 +16,11 @@ class ZeroBounce {
      * @param string $apiKey
      */
     public function __construct( string $apiKey ) {
-        $this->zba = new ZeroBounceAPI( $apiKey );
+        if ( empty( $apiKey ) ) {
+            throw new EmptyAPIKeyException( 'Invalid ZeroBounce API key' );
+        }
+
+        $this->zeroBounceAPI = new ZeroBounceAPI( $apiKey );
     }
 
     /**
@@ -29,7 +34,7 @@ class ZeroBounce {
      */
     public function validate( string $emailAddress, string $ipAddress = '' ): Response {
         try {
-            $validation = $this->zba->validate( $emailAddress, $ipAddress );
+            $validation = $this->zeroBounceAPI->validate( $emailAddress, $ipAddress );
 
             $response = new Response(
                 $validation['address'],
@@ -63,6 +68,6 @@ class ZeroBounce {
      * @return float
      */
     public function getAccountCredits(): int {
-        return $this->zba->getCredits()['Credits'];
+        return $this->zeroBounceAPI->getCredits()['Credits'];
     }
 }
