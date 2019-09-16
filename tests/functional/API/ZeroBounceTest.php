@@ -20,6 +20,9 @@ final class ZeroBounceTest extends TestCase {
         $this->zeroBounce = new ZeroBounce( getenv( 'ZEROBOUNCE_API_KEY' ) );
     }
 
+    /**
+     * Test API Key Exception being thrown.
+     */
     public function testEmptyAPIKeyThrowsException() {
         $this->expectException( EmptyAPIKeyException::class );
         new ZeroBounce( '' );
