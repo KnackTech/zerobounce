@@ -1,6 +1,8 @@
 <?php
 
+use Dotenv\Dotenv;
 use GuzzleHttp\Client;
+use Knack\ZeroBounce\API\ZeroBounce;
 use Knack\ZeroBounce\Exceptions\ResponseException;
 
 class ZeroBounceAPI {
@@ -13,6 +15,11 @@ class ZeroBounceAPI {
     public function __construct( $key ) {
         $this->key    = $key;
         $this->client = new Client();
+
+        if(!function_exists('getenv')) {
+            $dotenv = new Dotenv( __DIR__ . '/../../../../' );
+            $dotenv->load();
+        }
     }
 
     /**
