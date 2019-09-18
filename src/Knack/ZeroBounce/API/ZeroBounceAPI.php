@@ -28,7 +28,9 @@ class ZeroBounceAPI {
         $paramsURI         = http_build_query( $params );
         $url               = "{$this->baseUrl}{$method}?{$paramsURI}";
 
-        $response = $this->client->get( $url );
+        $response = $this->client->get( $url ,[
+            'timeout' => getenv( 'ZEROBOUNCE_HTTP_TIMEOUT' ) || 3
+        ]);
 
         if ( $response->getStatusCode() === 200 ) {
             return json_decode( $response->getBody(), true );

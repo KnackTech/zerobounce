@@ -14,7 +14,7 @@ final class ZeroBounceTest extends TestCase {
      */
     public function setUp() {
         parent::setUp();
-        $dotenv = Dotenv::create( __DIR__ . '/../../../' );
+        $dotenv = new Dotenv( __DIR__ . '/../../../' );
         $dotenv->load();
 
         $this->zeroBounce = new ZeroBounce( getenv( 'ZEROBOUNCE_API_KEY' ) );
