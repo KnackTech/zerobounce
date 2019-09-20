@@ -12,9 +12,13 @@ class Environment {
      * @return array|false|string
      */
     public static function get( string $key ) {
-        $dotenv = new Dotenv( __DIR__ . '/../../../../' );
-        $dotenv->load();
+        if ( ! function_exists( 'getenv' ) ) {
+            $dotenv = new Dotenv( __DIR__ . '/../../../../' );
+            $dotenv->load();
 
-        return getenv($key);
+            return getenv( $key );
+        }
+
+        return getenv( $key );
     }
 }

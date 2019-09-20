@@ -3,7 +3,6 @@
 require_once 'ZeroBounceAPI.php';
 
 use Exception;
-use Knack\ZeroBounce\Exceptions\EmptyAPIKeyException;
 use Knack\ZeroBounce\Models\Response;
 use ZeroBounceAPI;
 
