@@ -112,7 +112,7 @@ country |The country the email signed up when ip address is provided or [null].
 region |The region the email signed up when ip address is provided or [null].
 city |The city the email signed up when ip address is provided or [null].
 zipcode |The zipcode the email signed up when ip address is provided or [null].
-processedAt |A Carbon instance of the .
+processedAt |A Carbon instance of the time the request was processed.
 
 `ZeroBounce::getAccountCredits()` method
   
