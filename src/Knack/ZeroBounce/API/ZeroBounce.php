@@ -16,10 +16,6 @@ class ZeroBounce {
      * @param string $apiKey
      */
     public function __construct( string $apiKey ) {
-        if ( empty( $apiKey ) ) {
-            throw new EmptyAPIKeyException( 'Invalid ZeroBounce API key' );
-        }
-
         $this->zeroBounceAPI = new ZeroBounceAPI( $apiKey );
     }
 
@@ -65,7 +61,7 @@ class ZeroBounce {
     }
 
     /**
-     * @return float
+     * @return int
      */
     public function getAccountCredits(): int {
         return $this->zeroBounceAPI->getCredits()['Credits'];
