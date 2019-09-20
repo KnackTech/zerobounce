@@ -1,7 +1,5 @@
 <?php namespace Knack\ZeroBounce\Utilities;
 
-use Dotenv\Dotenv;
-
 class Environment {
 
     /**
@@ -12,13 +10,6 @@ class Environment {
      * @return array|false|string
      */
     public static function get( string $key ) {
-        if ( ! function_exists( 'getenv' ) ) {
-            $dotenv = new Dotenv( __DIR__ . '/../../../../' );
-            $dotenv->load();
-
-            return getenv( $key );
-        }
-
         return getenv( $key );
     }
 }
