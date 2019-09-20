@@ -11,6 +11,7 @@ This is a PHP wrapper class example for the ZeroBounce API.
 
 The validation methods return objects on which you call get methods which return the relevant information. Please see the code for all getters and below for a sample:
 
+##### Laravel
 ```php
 <?php
 
@@ -18,13 +19,15 @@ use Knack\ZeroBounce\ZeroBounce;
 
 class EmailService {
 
-    private $zeroBounceApi;
+    private $zeroBounce;
 
     /**
      * EmailService constructor.
+     *
+     * @param ZeroBounce $zeroBounce
      */
-    public function __construct() {
-        $this->zeroBounceApi = new ZeroBounce(env('ZEROBOUNCE_API_KEY'));
+    public function __construct(ZeroBounce $zeroBounce) {
+        $this->zeroBounce = $zeroBounce;
     }
 
     /**
@@ -35,14 +38,55 @@ class EmailService {
      *
      * @return bool
      */
-    public function isValid(string $emailAddress, string $ipAddress): bool
+    public function isValid(string $emailAddress, string $ipAddress = ''): bool
     {
-        $response = $this->zeroBounceApi->validate($emailAddress, $ipAddress);
-        return $response->status === 'valid';
+        $response = $this->zeroBounce->validate($emailAddress, $ipAddress);
+
+        if($response->status === StatusEnum::VALID) {
+            return true;
+        }
+
+        return false;
     }
 }
+```
 
+##### Vanilla PHP
+```php
+<?php
 
+use Knack\ZeroBounce\ZeroBounce;
+
+class EmailService {
+
+    private $zeroBounce;
+
+    /**
+     * EmailService constructor.
+     */
+    public function __construct() {
+        $this->zeroBounce = new ZeroBounce(getenv('ZEROBOUNCE_API_KEY'));
+    }
+
+    /**
+     * Validates an email address from blacklists and verifies that that domain is real.
+     *
+     * @param string $emailAddress
+     * @param string $ipAddress
+     *
+     * @return bool
+     */
+    public function isValid(string $emailAddress, string $ipAddress = ''): bool
+    {
+        $response = $this->zeroBounce->validate($emailAddress, $ipAddress);
+
+        if($response->status === StatusEnum::VALID) {
+            return true;
+        }
+
+        return false;
+    }
+}
 ```
 
 **Properties and possible values in Response:**
@@ -51,8 +95,8 @@ class EmailService {
 |<b>Property</b>|<b>Possible Values</b> 
 |:--- |:--- 
 address  | The email address you are validating. 
-status | valid /invalid /catch-all /unknown /spamtrap /abuse /do_not_mail 
-subStatus  |antispam_system /greylisted /mail_server_temporary_error /forcible_disconnect /mail_server_did_not_respond /timeout_exceeded /failed_smtp_connection /mailbox_quota_exceeded /exception_occurred /possible_traps /role_based /global_suppression /mailbox_not_found /no_dns_entries /failed_syntax_check /possible_typo /unroutable_ip_address /leading_period_removed /does_not_accept_mail /role_based_catch_all /disposable /toxic
+status | StatusEnum::class as string
+subStatus  |SubStatusEnum::class as string or [null]
 account | The portion of the email address before the "@" symbol.
 domain | The portion of the email address after the "@" symbol.
 didYouMean | Suggestive Fix for an email typo or [null]
@@ -63,12 +107,12 @@ mxRecord | The preferred MX record of the domain or [null]
 smtpProvider | The SMTP Provider of the email or [null] (BETA).
 firstname | The first name of the owner of the email when available or [null].
 lastname  |The last name of the owner of the email when available or [null].
-gender |The gender of the owner of the email when available or [null].
+gender |GenderEnum::class as string or [null].
 country |The country the email signed up when ip address is provided or [null].
 region |The region the email signed up when ip address is provided or [null].
 city |The city the email signed up when ip address is provided or [null].
 zipcode |The zipcode the email signed up when ip address is provided or [null].
-processedAt |A Carbon instance of the .
+processedAt |A Carbon instance of the time the request was processed.
 
 `ZeroBounce::getAccountCredits()` method
   
