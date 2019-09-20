@@ -2,6 +2,7 @@
 
 use Illuminate\Support\ServiceProvider;
 use Knack\ZeroBounce\API\ZeroBounce;
+use Knack\ZeroBounce\Utilities\Environment;
 
 class ZeroBounceServiceProvider extends ServiceProvider {
 
@@ -12,7 +13,7 @@ class ZeroBounceServiceProvider extends ServiceProvider {
      */
     public function register() {
         $this->app->singleton( ZeroBounce::class, static function ( $app ) {
-            return new ZeroBounce( getenv( 'ZEROBOUNCE_API_KEY' ) );
+            return new ZeroBounce( Environment::get( 'ZEROBOUNCE_API_KEY' ) );
         } );
     }
 

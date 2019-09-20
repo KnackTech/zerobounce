@@ -4,6 +4,7 @@ use Dotenv\Dotenv;
 use Knack\ZeroBounce\API\ZeroBounce;
 use Knack\ZeroBounce\Enums\StatusEnum;
 use Knack\ZeroBounce\Exceptions\EmptyAPIKeyException;
+use Knack\ZeroBounce\Utilities\Environment;
 use PHPUnit\Framework\TestCase;
 
 final class ZeroBounceTest extends TestCase {
@@ -17,7 +18,19 @@ final class ZeroBounceTest extends TestCase {
         $dotenv = new Dotenv( __DIR__ . '/../../../' );
         $dotenv->load();
 
-        $this->zeroBounce = new ZeroBounce( getenv( 'ZEROBOUNCE_API_KEY' ) );
+        $this->zeroBounce = new ZeroBounce( Environment::get( 'ZEROBOUNCE_API_KEY' ) );
+    }
+
+    /**
+     * Test Graceful API Key handling.
+     */
+    public function testGracefulAPIKeyHandling() {
+        try {
+            $zeroBounce = new ZeroBounce( '' );
+            $this->assertNotNull($zeroBounce);
+        } catch (Throwable $e) {
+            $this->fail('Exception thrown when should handle gracefully');
+        }
     }
 
     /**
@@ -25,7 +38,8 @@ final class ZeroBounceTest extends TestCase {
      */
     public function testEmptyAPIKeyThrowsException() {
         $this->expectException( EmptyAPIKeyException::class );
-        new ZeroBounce( '' );
+        $zeroBounce = new ZeroBounce( '' );
+        $zeroBounce->getAccountCredits();
     }
 
     /**
