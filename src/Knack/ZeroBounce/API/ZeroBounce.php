@@ -25,9 +25,9 @@ class ZeroBounce {
      * @param string $emailAddress
      * @param string $ipAddress
      *
-     * @return Response
+     * @return Response|null
      */
-    public function validate( string $emailAddress, string $ipAddress = '' ): Response {
+    public function validate( string $emailAddress, string $ipAddress = '' ) {
         try {
             $validation = $this->zeroBounceAPI->validate( $emailAddress, $ipAddress );
 
