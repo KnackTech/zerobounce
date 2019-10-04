@@ -3,6 +3,8 @@
 require_once 'ZeroBounceAPI.php';
 
 use Exception;
+use Knack\ZeroBounce\Exceptions\ZeroBounceException;
+use Knack\ZeroBounce\Exceptions\EmptyAPIKeyException;
 use Knack\ZeroBounce\Models\Response;
 use ZeroBounceAPI;
 
@@ -25,7 +27,8 @@ class ZeroBounce {
      * @param string $emailAddress
      * @param string $ipAddress
      *
-     * @return Response|null
+     * @throws ZeroBounceException
+     * @return Response
      */
     public function validate( string $emailAddress, string $ipAddress = '' ) {
         try {
@@ -55,11 +58,13 @@ class ZeroBounce {
 
             return $response;
         } catch ( Exception $e ) {
-            return null;
+            throw new ZeroBounceException($e->getMessage(), $e->getCode());
         }
     }
 
     /**
+     * Get the account credits available to be used.
+     *
      * @return int
      */
     public function getAccountCredits(): int {
