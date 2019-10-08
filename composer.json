@@ -9,19 +9,40 @@
       "email": "doug@joinknack.com"
     }
   ],
+  "scripts": {
+    "cghooks": "vendor/bin/cghooks",
+    "test": "./vendor/phpunit/phpunit/phpunit --coverage-clover ./tests/_output/coverage.xml"
+  },
+  "extra": {
+    "hooks": {
+      "pre-commit": [
+        "php-cs-fixer fix",
+        "phpunit --configuration ./phpunit.xml --coverage-clover ./tests/_output/coverage.xml"
+      ]
+    }
+  },
   "require": {
-    "php": ">=7.0.0",
+    "php": ">=7.2",
     "ext-curl": "*",
-    "nesbot/carbon": "1.38.4"
+    "nesbot/carbon": "1.38.4",
+    "ext-json": "*",
+    "guzzlehttp/guzzle": "^6.3"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",
-    "phpunit/phpunit": "^6",
-    "vlucas/phpdotenv": "^3.6"
+    "phpunit/phpunit": "^8",
+    "vlucas/phpdotenv": "^2.2",
+    "illuminate/contracts": "5.7.*",
+    "illuminate/support": "5.7.*",
+    "squizlabs/php_codesniffer": "^3.4",
+    "phpmd/phpmd": "^2.7",
+    "friendsofphp/php-cs-fixer": "^2.15",
+    "brainmaestro/composer-git-hooks": "^2.8",
+    "mockery/mockery": "^1.2"
   },
   "autoload": {
     "psr-4": {
-      "Knack\\ZeroBounce\\": "src/"
+      "Knack\\ZeroBounce\\": "src/Knack/ZeroBounce"
     }
   },
   "autoload-dev": {

@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit bootstrap="vendor/autoload.php" colors="true" verbose="true" stopOnFailure="false">
     <testsuites>
+        <testsuite name="Unit Test Suite">
+            <directory>tests/unit</directory>
+        </testsuite>
         <testsuite name="Functional Test Suite">
             <directory>tests/functional</directory>
         </testsuite>
     </testsuites>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">src</directory>
+        </whitelist>
+    </filter>
 </phpunit>
