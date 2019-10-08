@@ -13,6 +13,7 @@ blocks:
         - name: phpunit
           commands:
             - checkout
+            - pwd
             - docker-compose build
             - docker-compose up
             - cd ./tests/_output/ && bash <(curl -s https://codecov.io/bash)
