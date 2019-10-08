@@ -1,2 +1,4 @@
 vendor
 .env
+.phpunit.result.cache
+/tests/_output/

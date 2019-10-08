@@ -1,0 +1,13 @@
+codecov:
+  notify:
+    after_n_builds: 1
+
+coverage:
+  status:
+    project:
+      default:
+        target: 75%
+    patch: off
+
+ignore:
+  - "src/Knack/ZeroBounce/Providers"

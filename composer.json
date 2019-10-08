@@ -9,8 +9,11 @@
       "email": "doug@joinknack.com"
     }
   ],
+  "scripts": {
+    "test": "./vendor/phpunit/phpunit/phpunit --coverage-clover ./tests/_output/coverage.xml"
+  },
   "require": {
-    "php": ">=7.0.0",
+    "php": ">=7.2",
     "ext-curl": "*",
     "nesbot/carbon": "1.38.4",
     "ext-json": "*",
@@ -18,7 +21,7 @@
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",
-    "phpunit/phpunit": "^6",
+    "phpunit/phpunit": "^8",
     "vlucas/phpdotenv": "^2.2",
     "illuminate/contracts": "5.7.*",
     "illuminate/support": "5.7.*"

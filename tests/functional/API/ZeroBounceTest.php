@@ -13,7 +13,7 @@ final class ZeroBounceTest extends TestCase {
     /**
      * Test set up.
      */
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
         $dotenv = new Dotenv( __DIR__ . '/../../../' );
         $dotenv->load();
@@ -24,7 +24,7 @@ final class ZeroBounceTest extends TestCase {
     /**
      * Test Graceful API Key handling.
      */
-    public function testGracefulAPIKeyHandling() {
+    public function testGracefulAPIKeyHandling(): void {
         try {
             $zeroBounce = new ZeroBounce( '' );
             $this->assertNotNull($zeroBounce);
@@ -36,7 +36,7 @@ final class ZeroBounceTest extends TestCase {
     /**
      * Test API Key Exception being thrown.
      */
-    public function testEmptyAPIKeyThrowsException() {
+    public function testEmptyAPIKeyThrowsException(): void {
         $this->expectException( EmptyAPIKeyException::class );
         $zeroBounce = new ZeroBounce( '' );
         $zeroBounce->getAccountCredits();
@@ -45,7 +45,7 @@ final class ZeroBounceTest extends TestCase {
     /**
      * Test validating an email address with an IP.
      */
-    public function testCanValidateEmailWithIp() {
+    public function testCanValidateEmailWithIp(): void {
         $response = $this->zeroBounce->validate( 'valid@example.com', '99.110.204.1' );
 
         $this->assertNotNull( $response );
@@ -55,7 +55,7 @@ final class ZeroBounceTest extends TestCase {
     /**
      * Test validating an email address with an IP.
      */
-    public function testCanValidateEmailWithoutIp() {
+    public function testCanValidateEmailWithoutIp(): void {
         $response = $this->zeroBounce->validate( 'valid@example.com' );
 
         $this->assertNotNull( $response );
@@ -65,7 +65,7 @@ final class ZeroBounceTest extends TestCase {
     /**
      * Test validating an email address with an IP.
      */
-    public function testCanGetAccountCredits() {
+    public function testCanGetAccountCredits(): void {
         $response = $this->zeroBounce->getAccountCredits();
 
         $this->assertTrue( $response >= 0 );

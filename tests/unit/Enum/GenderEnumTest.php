@@ -8,14 +8,14 @@ final class GenderEnumTest extends TestCase {
     /**
      * Test Enum non-null value is returned when non-null value is passed.
      */
-    public function testOnNonNullValue() {
+    public function testOnNonNullValue(): void {
         $this->assertNotNull( GenderEnum::from( GenderEnum::MALE ) );
     }
 
     /**
      * Test Enum null value is returned when null value is passed.
      */
-    public function testOnNullValue() {
+    public function testOnNullValue(): void {
         $this->assertNull( GenderEnum::from( null ) );
     }
 }
