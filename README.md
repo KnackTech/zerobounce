@@ -1,11 +1,20 @@
-Knack ZeroBounce PHP API
-=====================
+<p align="center">
+  <a href="https://joinknack.com/">
+    <img alt="Knack Technologies, Inc." src="https://static.joinknack.com/images/logos/knack-logo-orange.svg" width="300">
+  </a>
+</p>
 
-[ZeroBounce](https://www.zerobounce.net) PHP API v2
+<p align="center">
+  Knack [ZeroBounce](https://www.zerobounce.net) PHP API
+</p>
 
-This is a PHP wrapper class example for the ZeroBounce API.
+<p align="center">
+    <a href="https://codecov.io/gh/KnackTech/zerobounce">
+      <img src="https://codecov.io/gh/KnackTech/zerobounce/branch/master/graph/badge.svg?token=VSBXEKUDkT" />
+    </a>
+</p>
 
-* TLS V1.2 is required -  This is available from PHP 5.5.19 and up.
+* PHP 7.2 Required
 
 #### Example usage:
 
@@ -104,7 +113,7 @@ domainAgeDays | Age of the email domain in days or [null].
 freeEmail | [true/false] If the email comes from a free provider.
 mxFound | [true/false] Does the domain have an MX record.
 mxRecord | The preferred MX record of the domain or [null]
-smtpProvider | The SMTP Provider of the email or [null] (BETA).
+smtpProvider | The SMTP Provider of the email or [null].
 firstname | The first name of the owner of the email when available or [null].
 lastname  |The last name of the owner of the email when available or [null].
 gender |GenderEnum::class as string or [null].
