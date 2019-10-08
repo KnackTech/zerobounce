@@ -1,0 +1,20 @@
+version: v1.0
+name: Knack Core API
+
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+
+blocks:
+  - name: Test ZeroBounce Wrapper
+    task:
+      secrets:
+        - name: core
+      jobs:
+        - name: codeception
+          commands:
+            - checkout
+            - docker-compose build
+            - docker-compose up --abort-on-container-exit
+            - cd ./tests/_output/ && bash <(curl -s https://codecov.io/bash)

@@ -9,8 +9,11 @@
       "email": "doug@joinknack.com"
     }
   ],
+  "scripts": {
+    "test": "phpunit"
+  },
   "require": {
-    "php": ">=7.0.0",
+    "php": ">=7.1.23",
     "ext-curl": "*",
     "nesbot/carbon": "1.38.4",
     "ext-json": "*",
