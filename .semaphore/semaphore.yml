@@ -10,9 +10,9 @@ blocks:
       secrets:
         - name: core
       jobs:
-        - name: codeception
+        - name: phpunit
           commands:
             - checkout
             - docker-compose build
-            - docker-compose up --abort-on-container-exit
-            - 'cd ./tests/_output/ && bash <(curl -s https://codecov.io/bash)'
+            - docker-compose up
+            - cd ./tests/_output/ && bash <(curl -s https://codecov.io/bash)
