@@ -1,7 +1,8 @@
-<?php namespace Knack\ZeroBounce\Utilities;
+<?php
+namespace Knack\ZeroBounce\Utilities;
 
-class Environment {
-
+class Environment
+{
     /**
      * Get an environment variable by key name
      *
@@ -9,7 +10,8 @@ class Environment {
      *
      * @return array|false|string
      */
-    public static function get( string $key ) {
-        return getenv( $key );
+    public static function get(string $key)
+    {
+        return getenv($key);
     }
 }

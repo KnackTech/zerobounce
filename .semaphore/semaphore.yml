@@ -15,5 +15,5 @@ blocks:
             - checkout
             - mv /home/semaphore/.env /home/semaphore/zerobounce/.env
             - docker-compose build
-            - docker-compose up
+            - docker-compose up --abort-on-container-exit
             - cd ./tests/_output/ && bash <(curl -s https://codecov.io/bash)

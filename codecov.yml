@@ -8,6 +8,3 @@ coverage:
       default:
         target: 75%
     patch: off
-
-ignore:
-  - "src/Knack/ZeroBounce/Providers"
