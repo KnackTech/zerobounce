@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  Knack [ZeroBounce](https://www.zerobounce.net) PHP API
+  Knack ZeroBounce PHP API Wrapper
 </p>
 
 <p align="center">
