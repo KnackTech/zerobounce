@@ -10,7 +10,7 @@
     }
   ],
   "scripts": {
-    "test": "./vendor/phpunit/phpunit/phpunit"
+    "test": "./vendor/phpunit/phpunit/phpunit --coverage-clover ./tests/_output/coverage.xml"
   },
   "require": {
     "php": ">=7.2",
