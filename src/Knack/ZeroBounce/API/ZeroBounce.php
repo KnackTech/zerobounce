@@ -11,14 +11,12 @@
  * @license  https://github.com/KnackTech/zerobounce/blob/develop/LICENSE MIT License
  * @link     https://joinknack.com
  */
-
 namespace Knack\ZeroBounce\API;
 
 require_once 'ZeroBounceAPI.php';
 
 use Exception;
 use Knack\ZeroBounce\Exceptions\ZeroBounceException;
-use Knack\ZeroBounce\Exceptions\EmptyAPIKeyException;
 use Knack\ZeroBounce\Models\Response;
 use ZeroBounceAPI;
 
@@ -42,7 +40,7 @@ class ZeroBounce
      */
     public function __construct(string $apiKey)
     {
-        $this->zeroBounceAPI = new ZeroBounceAPI($apiKey);
+        $this->_zeroBounceAPI = new ZeroBounceAPI($apiKey);
     }
 
     /**
@@ -98,7 +96,7 @@ class ZeroBounce
         try {
             return $this->_zeroBounceAPI->getCredits()['Credits'];
         } catch (Exception $e) {
-            return null;
+            throw new ZeroBounceException($e->getMessage(), $e->getCode());
         }
     }
 }

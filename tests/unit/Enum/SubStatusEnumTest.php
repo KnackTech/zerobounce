@@ -1,6 +1,6 @@
-<?php namespace Knack\ZeroBounce\Tests\Unit\Enum;
+<?php
+namespace Knack\ZeroBounce\Tests\Unit\Enum;
 
-use Knack\ZeroBounce\Enums\GenderEnum;
 use Knack\ZeroBounce\Enums\SubStatusEnum;
 use PHPUnit\Framework\TestCase;
 
@@ -15,7 +15,6 @@ use PHPUnit\Framework\TestCase;
  */
 final class SubStatusEnumTest extends TestCase
 {
-
     /**
      * Test Enum non-null value is returned when non-null value is passed.
      */

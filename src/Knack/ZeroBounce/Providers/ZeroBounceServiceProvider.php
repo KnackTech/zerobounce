@@ -1,8 +1,5 @@
 <?php
 
-use Illuminate\Support\ServiceProvider;
-use Knack\ZeroBounce\API\ZeroBounce;
-use Knack\ZeroBounce\Utilities\Environment;
 /**
  * The ZeroBounce Service Provider for Laravel projects.
  *
@@ -14,11 +11,11 @@ use Knack\ZeroBounce\Utilities\Environment;
  * @license  https://github.com/KnackTech/zerobounce/blob/develop/LICENSE MIT License
  * @link     https://joinknack.com
  */
-
 namespace Knack\ZeroBounce\Providers {
 
     use Illuminate\Support\ServiceProvider;
     use Knack\ZeroBounce\API\ZeroBounce;
+    use Knack\ZeroBounce\Utilities\Environment;
 
     /**
      * Class ZeroBounceServiceProvider
@@ -29,27 +26,22 @@ namespace Knack\ZeroBounce\Providers {
      * @license  https://github.com/KnackTech/zerobounce/blob/develop/LICENSE MIT License
      * @link     https://joinknack.com
      */
-    public function register() {
-        $this->app->singleton( ZeroBounce::class, static function ( $app ) {
-            return new ZeroBounce( Environment::get( 'ZEROBOUNCE_API_KEY' ) );
-        } );
-    }
-
+    class ZeroBounceServiceProvider extends ServiceProvider
+    {
         /**
          * Register bindings in the container.
          *
          * @return void
          */
-        public function register()
+        public function register(): void
         {
             $this->app->singleton(
                 ZeroBounce::class,
                 static function ($app) {
-                    return new ZeroBounce(getenv('ZEROBOUNCE_API_KEY'));
+                    return new ZeroBounce(Environment::get('ZEROBOUNCE_API_KEY'));
                 }
             );
         }
-
 
         /**
          * Get the services provided by the provider.
@@ -58,7 +50,7 @@ namespace Knack\ZeroBounce\Providers {
          */
         public function provides(): array
         {
-            return [ ZeroBounce::class ];
+            return [ZeroBounce::class];
         }
     }
 }

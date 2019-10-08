@@ -16,7 +16,7 @@
   "extra": {
     "hooks": {
       "pre-commit": [
-        "php-cs-fixer fix ./src",
+        "php-cs-fixer fix",
         "phpunit --configuration ./phpunit.xml --coverage-clover ./tests/_output/coverage.xml"
       ]
     }

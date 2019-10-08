@@ -1,8 +1,8 @@
-<?php namespace Knack\ZeroBounce\Utilities;
+<?php
+namespace Knack\ZeroBounce\Utilities;
 
 class Environment
 {
-
     /**
      * Get an environment variable by key name
      *

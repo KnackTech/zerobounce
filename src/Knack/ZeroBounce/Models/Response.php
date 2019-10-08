@@ -11,7 +11,6 @@
  * @license  https://github.com/KnackTech/zerobounce/blob/develop/LICENSE MIT License
  * @link     https://joinknack.com
  */
-
 namespace Knack\ZeroBounce\Models;
 
 use Carbon\Carbon;
@@ -30,7 +29,6 @@ use Knack\ZeroBounce\Enums\SubStatusEnum;
  */
 class Response
 {
-
     /**
      * The address part of the email
      *
@@ -189,24 +187,24 @@ class Response
      */
     public function __construct($address, $status, $subStatus, $account, $domain, $didYouMean, $domainAgeDays, $freeEmail, $mxFound, $mxRecord, $smtpProvider, $firstName, $lastName, $gender, $country, $region, $city, $zipCode, $processedAt)
     {
-        $this->address       = $address;
-        $this->status        = StatusEnum::from($status);
-        $this->subStatus     = SubStatusEnum::from($subStatus);
-        $this->account       = $account;
-        $this->domain        = $domain;
-        $this->didYouMean    = $didYouMean;
+        $this->address = $address;
+        $this->status = StatusEnum::from($status);
+        $this->subStatus = SubStatusEnum::from($subStatus);
+        $this->account = $account;
+        $this->domain = $domain;
+        $this->didYouMean = $didYouMean;
         $this->domainAgeDays = $domainAgeDays;
-        $this->freeEmail     = $freeEmail;
-        $this->mxFound       = $mxFound;
-        $this->mxRecord      = $mxRecord;
-        $this->smtpProvider  = $smtpProvider;
-        $this->firstName     = $firstName;
-        $this->lastName      = $lastName;
-        $this->gender        = GenderEnum::from($gender);
-        $this->country       = $country;
-        $this->region        = $region;
-        $this->city          = $city;
-        $this->zipCode       = $zipCode;
-        $this->processedAt   = Carbon::parse($processedAt);
+        $this->freeEmail = $freeEmail;
+        $this->mxFound = $mxFound;
+        $this->mxRecord = $mxRecord;
+        $this->smtpProvider = $smtpProvider;
+        $this->firstName = $firstName;
+        $this->lastName = $lastName;
+        $this->gender = GenderEnum::from($gender);
+        $this->country = $country;
+        $this->region = $region;
+        $this->city = $city;
+        $this->zipCode = $zipCode;
+        $this->processedAt = Carbon::parse($processedAt);
     }
 }

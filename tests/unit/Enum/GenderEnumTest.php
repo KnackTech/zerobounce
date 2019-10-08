@@ -1,4 +1,5 @@
-<?php namespace Knack\ZeroBounce\Tests\Unit\Enum;
+<?php
+namespace Knack\ZeroBounce\Tests\Unit\Enum;
 
 use Knack\ZeroBounce\Enums\GenderEnum;
 use PHPUnit\Framework\TestCase;
@@ -14,14 +15,14 @@ use PHPUnit\Framework\TestCase;
  */
 final class GenderEnumTest extends TestCase
 {
-
     /**
      * Test Enum non-null value is returned when non-null value is passed
      *
      * @return void
      */
-    public function testOnNonNullValue(): void {
-        $this->assertNotNull( GenderEnum::from( GenderEnum::MALE ) );
+    public function testOnNonNullValue(): void
+    {
+        $this->assertNotNull(GenderEnum::from(GenderEnum::MALE));
     }
 
     /**
@@ -29,8 +30,9 @@ final class GenderEnumTest extends TestCase
      *
      * @return void
      */
-    public function testOnNullValue(): void {
-        $this->assertNull( GenderEnum::from( null ) );
+    public function testOnNullValue(): void
+    {
+        $this->assertNull(GenderEnum::from(null));
     }
 
     /**

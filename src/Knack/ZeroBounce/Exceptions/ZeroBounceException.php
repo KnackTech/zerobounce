@@ -1,4 +1,5 @@
-<?php namespace Knack\ZeroBounce\Exceptions;
+<?php
+namespace Knack\ZeroBounce\Exceptions;
 
 use RuntimeException;
 use Throwable;

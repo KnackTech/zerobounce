@@ -1,10 +1,6 @@
 <?php
 
-use Dotenv\Dotenv;
 use Knack\ZeroBounce\API\ZeroBounce;
-use Knack\ZeroBounce\Enums\StatusEnum;
-use Knack\ZeroBounce\Exceptions\EmptyAPIKeyException;
-use Knack\ZeroBounce\Exceptions\ResponseException;
 use Knack\ZeroBounce\Providers\ZeroBounceServiceProvider;
 use PHPUnit\Framework\TestCase;
 
@@ -19,13 +15,12 @@ use PHPUnit\Framework\TestCase;
  */
 final class ZeroBounceServiceProviderTest extends TestCase
 {
-
     /**
      * Test Service Provider registers
      *
      * @return void
      */
-    public function testServiceProviderRegisters()
+    public function testServiceProviderRegisters(): void
     {
         $mocked = Mockery::spy(ZeroBounceServiceProvider::class);
         $mocked->allows()->register()->andReturn(null);
@@ -37,7 +32,7 @@ final class ZeroBounceServiceProviderTest extends TestCase
      *
      * @return void
      */
-    public function testServiceProviderProvides()
+    public function testServiceProviderProvides(): void
     {
         $serviceProvider = new ZeroBounceServiceProvider([]);
         $this->assertNotNull($serviceProvider->provides());

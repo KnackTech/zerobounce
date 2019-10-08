@@ -23,7 +23,7 @@ class ZeroBounceAPI
      */
     public function __construct($key)
     {
-        $this->_key    = $key;
+        $this->_key = $key;
         $this->_client = new Client();
     }
 
@@ -35,18 +35,18 @@ class ZeroBounceAPI
      *
      * @return mixed
      */
-    private function apiCall($method, array $params): array
+    private function _apiCall($method, array $params): array
     {
-        if (empty($this->key)) {
+        if (empty($this->_key)) {
             throw new EmptyAPIKeyException('Invalid ZeroBounce API key');
         }
 
-        $params['api_key'] = $this->key;
-        $paramsURI         = http_build_query($params);
-        $url               = "{$this->baseUrl}{$method}?{$paramsURI}";
+        $params['api_key'] = $this->_key;
+        $paramsURI = http_build_query($params);
+        $url = "{$this->_baseURL}{$method}?{$paramsURI}";
 
-        $response = $this->client->get($url, [
-            'timeout' => Environment::get('ZEROBOUNCE_HTTP_TIMEOUT') ? (float) Environment::get('ZEROBOUNCE_HTTP_TIMEOUT') : 3.0
+        $response = $this->_client->get($url, [
+            'timeout' => Environment::get('ZEROBOUNCE_HTTP_TIMEOUT') ? (float) Environment::get('ZEROBOUNCE_HTTP_TIMEOUT') : 3.0,
         ]);
 
         if ($response->getStatusCode() === 200) {
@@ -79,8 +79,8 @@ class ZeroBounceAPI
         return $this->_apiCall(
             'validate',
             [
-            'email'      => $email,
-            'ip_address' => $ip
+            'email' => $email,
+            'ip_address' => $ip,
             ]
         );
     }

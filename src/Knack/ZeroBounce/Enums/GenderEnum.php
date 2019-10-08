@@ -11,7 +11,6 @@
  * @license  https://github.com/KnackTech/zerobounce/blob/develop/LICENSE MIT License
  * @link     https://joinknack.com
  */
-
 namespace Knack\ZeroBounce\Enums;
 
 /**
@@ -23,7 +22,6 @@ namespace Knack\ZeroBounce\Enums;
  * @license  https://github.com/KnackTech/zerobounce/blob/develop/LICENSE MIT License
  * @link     https://joinknack.com
  */
-
 class GenderEnum
 {
     const MALE = 'male';

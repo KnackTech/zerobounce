@@ -1,11 +1,17 @@
-<?php namespace Knack\ZeroBounce\Tests\Functional\API;
+<?php
+
+namespace Knack\ZeroBounce\Tests\Functional\API;
 
 use Dotenv\Dotenv;
 use Knack\ZeroBounce\API\ZeroBounce;
 use Knack\ZeroBounce\Enums\StatusEnum;
 use Knack\ZeroBounce\Exceptions\EmptyAPIKeyException;
+use Knack\ZeroBounce\Exceptions\ResponseException;
+use Knack\ZeroBounce\Exceptions\ZeroBounceException;
 use Knack\ZeroBounce\Utilities\Environment;
+use Mockery;
 use PHPUnit\Framework\TestCase;
+use Throwable;
 
 /**
  * Class ZeroBounceTest
@@ -25,20 +31,22 @@ final class ZeroBounceTest extends TestCase
      *
      * @return void
      */
-    public function setUp(): void {
+    public function setUp(): void
+    {
         parent::setUp();
-        $dotenv = new Dotenv( __DIR__ . '/../../../' );
+        $dotenv = new Dotenv(__DIR__ . '/../../../');
         $dotenv->load();
 
-        $this->zeroBounce = new ZeroBounce( Environment::get( 'ZEROBOUNCE_API_KEY' ) );
+        $this->_zeroBounce = new ZeroBounce(Environment::get('ZEROBOUNCE_API_KEY'));
     }
 
     /**
      * Test Graceful API Key handling.
      */
-    public function testGracefulAPIKeyHandling(): void {
+    public function testGracefulAPIKeyHandling(): void
+    {
         try {
-            $zeroBounce = new ZeroBounce( '' );
+            $zeroBounce = new ZeroBounce('');
             $this->assertNotNull($zeroBounce);
         } catch (Throwable $e) {
             $this->fail('Exception thrown when should handle gracefully');
@@ -50,9 +58,10 @@ final class ZeroBounceTest extends TestCase
      *
      * @return void
      */
-    public function testEmptyAPIKeyThrowsException(): void {
-        $this->expectException( EmptyAPIKeyException::class );
-        $zeroBounce = new ZeroBounce( '' );
+    public function testEmptyAPIKeyThrowsException(): void
+    {
+        $zeroBounce = new ZeroBounce('');
+        $this->expectException(ZeroBounceException::class);
         $zeroBounce->getAccountCredits();
     }
 
@@ -61,8 +70,7 @@ final class ZeroBounceTest extends TestCase
      *
      * @return void
      */
-    public function testFailedAPICall()
-    {
+    public function testFailedAPICall(): void {
         $this->expectException(ResponseException::class);
 
         $mocked = Mockery::mock(ZeroBounce::class);
@@ -75,8 +83,9 @@ final class ZeroBounceTest extends TestCase
      *
      * @return void
      */
-    public function testCanValidateEmailWithIp(): void {
-        $response = $this->zeroBounce->validate( 'valid@example.com', '99.110.204.1' );
+    public function testCanValidateEmailWithIp(): void
+    {
+        $response = $this->_zeroBounce->validate('valid@example.com', '99.110.204.1');
 
         $this->assertNotNull($response);
         $this->assertEquals(StatusEnum::VALID, $response->status);
@@ -87,8 +96,9 @@ final class ZeroBounceTest extends TestCase
      *
      * @return void
      */
-    public function testCanValidateEmailWithoutIp(): void {
-        $response = $this->zeroBounce->validate( 'valid@example.com' );
+    public function testCanValidateEmailWithoutIp(): void
+    {
+        $response = $this->_zeroBounce->validate('valid@example.com');
 
         $this->assertNotNull($response);
         $this->assertEquals(StatusEnum::VALID, $response->status);
@@ -99,8 +109,9 @@ final class ZeroBounceTest extends TestCase
      *
      * @return void
      */
-    public function testCanGetAccountCredits(): void {
-        $response = $this->zeroBounce->getAccountCredits();
+    public function testCanGetAccountCredits(): void
+    {
+        $response = $this->_zeroBounce->getAccountCredits();
 
         $this->assertTrue($response >= 0);
     }
