@@ -1,5 +1,5 @@
 version: v1.0
-name: Knack Core API
+name: Knack ZeroBounce Wrapper
 agent:
   machine:
     type: e1-standard-2
