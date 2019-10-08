@@ -1,4 +1,4 @@
-<?php
+<?php namespace Knack\ZeroBounce\Tests\Functional\API;
 
 use Dotenv\Dotenv;
 use Knack\ZeroBounce\API\ZeroBounce;

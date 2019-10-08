@@ -1,4 +1,4 @@
-<?php
+<?php namespace Knack\ZeroBounce\Tests\Unit\Enum;
 
 use Knack\ZeroBounce\Enums\GenderEnum;
 use PHPUnit\Framework\TestCase;

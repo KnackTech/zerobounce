@@ -26,7 +26,7 @@ class ZeroBounceAPI {
      * @return mixed
      */
     private function apiCall( $method, array $params ): array {
-        if(empty($this->key)) {
+        if ( empty( $this->key ) ) {
             throw new EmptyAPIKeyException( 'Invalid ZeroBounce API key' );
         }
 
@@ -34,9 +34,9 @@ class ZeroBounceAPI {
         $paramsURI         = http_build_query( $params );
         $url               = "{$this->baseUrl}{$method}?{$paramsURI}";
 
-        $response = $this->client->get( $url ,[
-            'timeout' => Environment::get( 'ZEROBOUNCE_HTTP_TIMEOUT' ) || 3
-        ]);
+        $response = $this->client->get( $url, [
+            'timeout' => Environment::get( 'ZEROBOUNCE_HTTP_TIMEOUT' ) ? (float) Environment::get( 'ZEROBOUNCE_HTTP_TIMEOUT' ) : 3.0
+        ] );
 
         if ( $response->getStatusCode() === 200 ) {
             return json_decode( $response->getBody(), true );
