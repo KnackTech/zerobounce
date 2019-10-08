@@ -13,7 +13,7 @@ blocks:
         - name: phpunit
           commands:
             - checkout
-            - pwd
+            - mv /home/semaphore/.env /home/semaphore/zerobounce/.env
             - docker-compose build
             - docker-compose up
             - cd ./tests/_output/ && bash <(curl -s https://codecov.io/bash)
