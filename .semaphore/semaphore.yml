@@ -8,7 +8,7 @@ blocks:
   - name: Test ZeroBounce Wrapper
     task:
       secrets:
-        - name: core
+        - name: zerobounce
       jobs:
         - name: phpunit
           commands:

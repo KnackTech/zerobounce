@@ -1,4 +1,4 @@
-FROM php:7.1.23-alpine
+FROM php:7.2.23-alpine
 
 RUN apk --no-cache add \
         pcre-dev ${PHPIZE_DEPS} \
