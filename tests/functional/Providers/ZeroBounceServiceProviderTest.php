@@ -1,14 +1,27 @@
 <?php
 
-use Knack\ZeroBounce\API\ZeroBounce;
+/**
+ * The tests for ZeroBounceServiceProvider::class
+ *
+ * PHP Version 7.0
+ *
+ * @category Tests
+ * @package  Knack\ZeroBounce\Tests\Functional\Providers
+ * @author   Doug Woodrow <doug@joinknack.com>
+ * @license  https://github.com/KnackTech/zerobounce/blob/develop/LICENSE MIT License
+ * @link     https://joinknack.com
+ */
+namespace Knack\ZeroBounce\Tests\Functional\Providers;
+
 use Knack\ZeroBounce\Providers\ZeroBounceServiceProvider;
+use Mockery;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class ZeroBounceServiceProviderTest
  *
  * @category Tests
- * @package  Knack\ZeroBounce\Tests
+ * @package  Knack\ZeroBounce\Tests\Functional\Providers
  * @author   Doug Woodrow <doug@joinknack.com>
  * @license  https://github.com/KnackTech/zerobounce/blob/develop/LICENSE MIT License
  * @link     https://joinknack.com

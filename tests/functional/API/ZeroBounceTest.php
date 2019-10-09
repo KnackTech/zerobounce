@@ -1,11 +1,21 @@
 <?php
 
+/**
+ * The tests for ZeroBounce::class
+ *
+ * PHP Version 7.0
+ *
+ * @category Tests
+ * @package  Knack\ZeroBounce\Tests\Functional\API
+ * @author   Doug Woodrow <doug@joinknack.com>
+ * @license  https://github.com/KnackTech/zerobounce/blob/develop/LICENSE MIT License
+ * @link     https://joinknack.com
+ */
 namespace Knack\ZeroBounce\Tests\Functional\API;
 
 use Dotenv\Dotenv;
 use Knack\ZeroBounce\API\ZeroBounce;
 use Knack\ZeroBounce\Enums\StatusEnum;
-use Knack\ZeroBounce\Exceptions\EmptyAPIKeyException;
 use Knack\ZeroBounce\Exceptions\ResponseException;
 use Knack\ZeroBounce\Exceptions\ZeroBounceException;
 use Knack\ZeroBounce\Utilities\Environment;
@@ -17,7 +27,7 @@ use Throwable;
  * Class ZeroBounceTest
  *
  * @category Tests
- * @package  Knack\ZeroBounce\Tests
+ * @package  Knack\ZeroBounce\Tests\Functional\API
  * @author   Doug Woodrow <doug@joinknack.com>
  * @license  https://github.com/KnackTech/zerobounce/blob/develop/LICENSE MIT License
  * @link     https://joinknack.com
@@ -42,6 +52,8 @@ final class ZeroBounceTest extends TestCase
 
     /**
      * Test Graceful API Key handling.
+     *
+     * @return void
      */
     public function testGracefulAPIKeyHandling(): void
     {
@@ -70,7 +82,8 @@ final class ZeroBounceTest extends TestCase
      *
      * @return void
      */
-    public function testFailedAPICall(): void {
+    public function testFailedAPICall(): void
+    {
         $this->expectException(ResponseException::class);
 
         $mocked = Mockery::mock(ZeroBounce::class);

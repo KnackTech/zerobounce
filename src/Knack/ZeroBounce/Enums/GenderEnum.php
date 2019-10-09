@@ -24,9 +24,9 @@ namespace Knack\ZeroBounce\Enums;
  */
 class GenderEnum
 {
-    const MALE = 'male';
+    public const MALE = 'male';
 
-    const FEMALE = 'female';
+    public const FEMALE = 'female';
 
     /**
      * Return enum from passed value
@@ -35,7 +35,7 @@ class GenderEnum
      *
      * @return string|null
      */
-    public static function from($value = '')
+    public static function from($value = ''): ?string
     {
         switch ($value) {
         case 'male':
