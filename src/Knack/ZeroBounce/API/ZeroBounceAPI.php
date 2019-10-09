@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * The ZeroBounce wrapper for the ZeroBounce API
+ *
+ * PHP Version 7.0
+ *
+ * @category Providers
+ * @package  Knack\ZeroBounce\Providers
+ * @author   Doug Woodrow <doug@joinknack.com>
+ * @license  https://github.com/KnackTech/zerobounce/blob/develop/LICENSE MIT License
+ * @link     https://joinknack.com
+ */
 use GuzzleHttp\Client;
 use Knack\ZeroBounce\Exceptions\EmptyAPIKeyException;
 use Knack\ZeroBounce\Exceptions\ResponseException;
@@ -45,9 +56,11 @@ class ZeroBounceAPI
         $paramsURI = http_build_query($params);
         $url = "{$this->_baseURL}{$method}?{$paramsURI}";
 
-        $response = $this->_client->get($url, [
-            'timeout' => Environment::get('ZEROBOUNCE_HTTP_TIMEOUT') ? (float) Environment::get('ZEROBOUNCE_HTTP_TIMEOUT') : 3.0,
-        ]);
+        $response = $this->_client->get(
+            $url, [
+            'timeout' => Environment::get('ZEROBOUNCE_HTTP_TIMEOUT', 3.0),
+            ]
+        );
 
         if ($response->getStatusCode() === 200) {
             return json_decode($response->getBody(), true);
