@@ -1,7 +1,7 @@
 <?php
 
 /**
- * The Exception for if there is an error with the ZeroBounce API
+ * The Exception for if there is an error with the response from the ZeroBounce API
  *
  * PHP Version 7.0
  *
