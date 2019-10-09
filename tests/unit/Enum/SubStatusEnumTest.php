@@ -1,4 +1,16 @@
 <?php
+
+/**
+ * The tests for SubStatusEnum::class
+ *
+ * PHP Version 7.0
+ *
+ * @category Tests
+ * @package  Knack\ZeroBounce\Tests\Unit\Enum
+ * @author   Doug Woodrow <doug@joinknack.com>
+ * @license  https://github.com/KnackTech/zerobounce/blob/develop/LICENSE MIT License
+ * @link     https://joinknack.com
+ */
 namespace Knack\ZeroBounce\Tests\Unit\Enum;
 
 use Knack\ZeroBounce\Enums\SubStatusEnum;
@@ -8,7 +20,7 @@ use PHPUnit\Framework\TestCase;
  * Class SubStatusEnumTest
  *
  * @category Tests
- * @package  Knack\ZeroBounce\Tests
+ * @package  Knack\ZeroBounce\Tests\Unit\Enum
  * @author   Doug Woodrow <doug@joinknack.com>
  * @license  https://github.com/KnackTech/zerobounce/blob/develop/LICENSE MIT License
  * @link     https://joinknack.com
@@ -17,16 +29,20 @@ final class SubStatusEnumTest extends TestCase
 {
     /**
      * Test Enum non-null value is returned when non-null value is passed.
+     *
+     * @return void
      */
-    public function testOnNonNullValue()
+    public function testOnNonNullValue(): void
     {
         $this->assertNotNull(SubStatusEnum::from(SubStatusEnum::ANTISPAM_SYSTEM));
     }
 
     /**
      * Test Enum null value is returned when null value is passed.
+     *
+     * @return void
      */
-    public function testOnNullValue()
+    public function testOnNullValue(): void
     {
         $this->assertNull(SubStatusEnum::from(null));
     }
@@ -36,7 +52,7 @@ final class SubStatusEnumTest extends TestCase
      *
      * @return void
      */
-    public function testCorrectValuesReturned()
+    public function testCorrectValuesReturned(): void
     {
         $this->assertEquals(SubStatusEnum::ANTISPAM_SYSTEM, SubStatusEnum::from(SubStatusEnum::ANTISPAM_SYSTEM));
         $this->assertEquals(SubStatusEnum::GREYLISTED, SubStatusEnum::from(SubStatusEnum::GREYLISTED));

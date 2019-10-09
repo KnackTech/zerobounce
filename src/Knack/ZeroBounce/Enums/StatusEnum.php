@@ -24,19 +24,19 @@ namespace Knack\ZeroBounce\Enums;
  */
 class StatusEnum
 {
-    const VALID = 'valid';
+    public const VALID = 'valid';
 
-    const INVALID = 'invalid';
+    public const INVALID = 'invalid';
 
-    const CATCH_ALL = 'catch-all';
+    public const CATCH_ALL = 'catch-all';
 
-    const UNKNOWN = 'unknown';
+    public const UNKNOWN = 'unknown';
 
-    const SPAMTRAP = 'spamtrap';
+    public const SPAMTRAP = 'spamtrap';
 
-    const ABUSE = 'abuse';
+    public const ABUSE = 'abuse';
 
-    const DO_NOT_MAIL = 'do_not_mail';
+    public const DO_NOT_MAIL = 'do_not_mail';
 
     /**
      * Return enum from passed value

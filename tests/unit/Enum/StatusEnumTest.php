@@ -1,4 +1,16 @@
 <?php
+
+/**
+ * The tests for StatusEnum::class
+ *
+ * PHP Version 7.0
+ *
+ * @category Tests
+ * @package  Knack\ZeroBounce\Tests\Unit\Enum
+ * @author   Doug Woodrow <doug@joinknack.com>
+ * @license  https://github.com/KnackTech/zerobounce/blob/develop/LICENSE MIT License
+ * @link     https://joinknack.com
+ */
 namespace Knack\ZeroBounce\Tests\Unit\Enum;
 
 use Knack\ZeroBounce\Enums\StatusEnum;
@@ -8,7 +20,7 @@ use PHPUnit\Framework\TestCase;
  * Class StatusEnumTest
  *
  * @category Tests
- * @package  Knack\ZeroBounce\Tests
+ * @package  Knack\ZeroBounce\Tests\Unit\Enum
  * @author   Doug Woodrow <doug@joinknack.com>
  * @license  https://github.com/KnackTech/zerobounce/blob/develop/LICENSE MIT License
  * @link     https://joinknack.com
@@ -17,6 +29,8 @@ final class StatusEnumTest extends TestCase
 {
     /**
      * Test Enum non-null value is returned when non-null value is passed.
+     *
+     * @return void
      */
     public function testOnNonNullValue(): void
     {
@@ -25,6 +39,8 @@ final class StatusEnumTest extends TestCase
 
     /**
      * Test Enum null value is returned when null value is passed.
+     *
+     * @return void
      */
     public function testOnNullValue(): void
     {
@@ -36,7 +52,7 @@ final class StatusEnumTest extends TestCase
      *
      * @return void
      */
-    public function testCorrectValuesReturned()
+    public function testCorrectValuesReturned(): void
     {
         $this->assertEquals(StatusEnum::VALID, StatusEnum::from(StatusEnum::VALID));
         $this->assertEquals(StatusEnum::INVALID, StatusEnum::from(StatusEnum::INVALID));
