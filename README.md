@@ -14,20 +14,34 @@
     </a>
 </p>
 
-* PHP 7.2 Required
+
+
+## Installing Knack's ZeroBounce
+
+
+The recommended way to install Knack's ZeroBounce is through
+[Composer](https://getcomposer.org/). PHP 7.2+ Required.
+
+```bash
+composer require knack/zerobounce
+```
+
+
 
 #### Example usage:
 
-The validation methods return objects on which you call get methods which return the relevant information. Please see the code for all getters and below for a sample:
-
 ##### Laravel
+
 ```php
 <?php
 
-use Knack\ZeroBounce\ZeroBounce;
+use Knack\ZeroBounce\API\ZeroBounce;
+use Knack\ZeroBounce\Enums\StatusEnum;
 
 class EmailService {
-
+    /**
+     * @var ZeroBounce
+     */
     private $zeroBounce;
 
     /**
@@ -61,13 +75,17 @@ class EmailService {
 ```
 
 ##### Vanilla PHP
+
 ```php
 <?php
 
-use Knack\ZeroBounce\ZeroBounce;
+use Knack\ZeroBounce\API\ZeroBounce;
+use Knack\ZeroBounce\Enums\StatusEnum;
 
 class EmailService {
-
+    /**
+     * @var ZeroBounce
+     */
     private $zeroBounce;
 
     /**
@@ -97,37 +115,28 @@ class EmailService {
     }
 }
 ```
+## Documentation
 
 **Properties and possible values in Response:**
-`ZeroBounce::validate()` method
-  
-|<b>Property</b>|<b>Possible Values</b> 
-|:--- |:--- 
-address  | The email address you are validating. 
-status | StatusEnum::class as string
-subStatus  |SubStatusEnum::class as string or [null]
-account | The portion of the email address before the "@" symbol.
-domain | The portion of the email address after the "@" symbol.
-didYouMean | Suggestive Fix for an email typo or [null]
-domainAgeDays | Age of the email domain in days or [null].
-freeEmail | [true/false] If the email comes from a free provider.
-mxFound | [true/false] Does the domain have an MX record.
-mxRecord | The preferred MX record of the domain or [null]
-smtpProvider | The SMTP Provider of the email or [null].
-firstname | The first name of the owner of the email when available or [null].
-lastname  |The last name of the owner of the email when available or [null].
-gender |GenderEnum::class as string or [null].
-country |The country the email signed up when ip address is provided or [null].
-region |The region the email signed up when ip address is provided or [null].
-city |The city the email signed up when ip address is provided or [null].
-zipcode |The zipcode the email signed up when ip address is provided or [null].
-processedAt |A Carbon instance of the time the request was processed.
 
-`ZeroBounce::getAccountCredits()` method
-  
-|<b>Property</b>|<b>Possible Values</b> 
-|:--- |:--- 
-credits  | The number of credits left in account for email validation.
+## Help and docs
+
+- [ZeroBounce](https://www.zerobounce.net/)
+- [ZeroBounce API Docs](https://www.zerobounce.net/docs/)
+
+## Contributing
+
+### Submitting PRs
+
+To submit a Pull Request to this repo, just simply open up the Pull Request targeting `develop`.
+
+Please ensure all tests are passing _**prior**_ to submitting your Pull Request.
+
+### Running the tests
+
+```bash
+composer test
+```
 
 **Any of the following email addresses can be used for testing the API, no credits are charged for these test email addresses:**
 - disposable@example.com
