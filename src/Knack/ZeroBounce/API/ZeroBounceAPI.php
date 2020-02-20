@@ -1,5 +1,7 @@
 <?php
 
+namespace Knack\ZeroBounce\API;
+
 /**
  * The ZeroBounce wrapper for the ZeroBounce API
  *
