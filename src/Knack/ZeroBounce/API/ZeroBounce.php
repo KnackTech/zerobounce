@@ -13,12 +13,9 @@
  */
 namespace Knack\ZeroBounce\API;
 
-require_once 'ZeroBounceAPI.php';
-
 use Exception;
 use Knack\ZeroBounce\Exceptions\ZeroBounceException;
 use Knack\ZeroBounce\Models\Response;
-use ZeroBounceAPI;
 
 /**
  * Class ZeroBounceService
