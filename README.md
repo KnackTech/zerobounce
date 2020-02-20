@@ -14,10 +14,7 @@
     </a>
 </p>
 
-
-
 ## Installing Knack's ZeroBounce
-
 
 The recommended way to install Knack's ZeroBounce is through
 [Composer](https://getcomposer.org/). PHP 7.2+ Required.
@@ -26,9 +23,7 @@ The recommended way to install Knack's ZeroBounce is through
 composer require knack/zerobounce
 ```
 
-
-
-#### Example usage:
+#### Example usage
 
 ##### Laravel
 
@@ -117,10 +112,7 @@ class EmailService {
 ```
 ## Documentation
 
-**Properties and possible values in Response:**
-
-## Help and docs
-
+- [Knack ZeroBounce](https://github.com/KnackTech/zerobounce/blob/develop/docs/index.html)
 - [ZeroBounce](https://www.zerobounce.net/)
 - [ZeroBounce API Docs](https://www.zerobounce.net/docs/)
 
