@@ -112,7 +112,7 @@ class EmailService {
 ```
 ## Documentation
 
-- [Knack ZeroBounce](https://github.com/KnackTech/zerobounce/blob/develop/docs/index.html)
+- [Knack ZeroBounce](https://knacktech.github.io/zerobounce/)
 - [ZeroBounce](https://www.zerobounce.net/)
 - [ZeroBounce API Docs](https://www.zerobounce.net/docs/)
 
