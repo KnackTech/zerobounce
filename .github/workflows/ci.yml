@@ -16,13 +16,25 @@ jobs:
         with:
           php-version: '7.2'
 
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v2
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
+
+      - name: Install dependencies
+        if: steps.composer-cache.outputs.cache-hit != 'true'
+        run: composer install --prefer-dist --no-progress --no-suggest
+
       - name: Run tests
         env:
           ZEROBOUNCE_API_KEY: ${{ secrets.ZEROBOUNCE_API_KEY }}
         run: |
           echo "ZEROBOUNCE_API_KEY=ZEROBOUNCE_API_KEY" >> .env
           echo "ZEROBOUNCE_HTTP_TIMEOUT=20" >> .env
-          composer install
           composer test
 
       - name: Upload Coverage
