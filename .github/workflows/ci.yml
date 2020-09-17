@@ -14,8 +14,10 @@ jobs:
       - name: Run tests
         env:
           ZEROBOUNCE_API_KEY: ${{ secrets.ZEROBOUNCE_API_KEY }}
-          ZEROBOUNCE_HTTP_TIMEOUT: 3
-        run: docker-compose up --build --abort-on-container-exit
+        run: |
+          echo "ZEROBOUNCE_API_KEY=ZEROBOUNCE_API_KEY" >> .env
+          echo "ZEROBOUNCE_HTTP_TIMEOUT=3" >> .env
+          docker-compose up --build --abort-on-container-exit
 
       - name: Upload Coverage
         uses: codecov/codecov-action@v1
