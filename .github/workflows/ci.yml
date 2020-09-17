@@ -12,12 +12,14 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Run tests
+        uses: shivammathur/setup-php@v2
         env:
           ZEROBOUNCE_API_KEY: ${{ secrets.ZEROBOUNCE_API_KEY }}
         run: |
           echo "ZEROBOUNCE_API_KEY=ZEROBOUNCE_API_KEY" >> .env
           echo "ZEROBOUNCE_HTTP_TIMEOUT=20" >> .env
-          docker-compose up --build --abort-on-container-exit
+          composer install
+          composer test
 
       - name: Upload Coverage
         uses: codecov/codecov-action@v1
