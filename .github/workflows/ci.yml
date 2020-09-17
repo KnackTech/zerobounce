@@ -11,8 +11,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Run tests
+      - name: Setup PHP
         uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.2'
+
+      - name: Run tests
         env:
           ZEROBOUNCE_API_KEY: ${{ secrets.ZEROBOUNCE_API_KEY }}
         run: |
