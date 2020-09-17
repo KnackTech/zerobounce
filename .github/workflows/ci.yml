@@ -16,6 +16,9 @@ jobs:
 
       - name: Upload Coverage
         uses: codecov/codecov-action@v1
+        env:
+          ZEROBOUNCE_API_KEY: ${{ secrets.ZEROBOUNCE_API_KEY }}
+          ZEROBOUNCE_HTTP_TIMEOUT: 3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           file: ./tests/_output/coverage.xml
