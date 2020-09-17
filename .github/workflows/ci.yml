@@ -1,0 +1,28 @@
+name: CI
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ develop ]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run tests
+        uses: shivammathur/setup-php@v2
+        env:
+          ZEROBOUNCE_API_KEY: ${{ secrets.ZEROBOUNCE_API_KEY }}
+        run: |
+          echo "ZEROBOUNCE_API_KEY=ZEROBOUNCE_API_KEY" >> .env
+          echo "ZEROBOUNCE_HTTP_TIMEOUT=20" >> .env
+          composer install
+          composer test
+
+      - name: Upload Coverage
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./tests/_output/coverage.xml
