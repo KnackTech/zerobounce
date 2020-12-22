@@ -1,5 +1,9 @@
 # Changelog
 
+### 1.0.4
+
+- Allow Guzzle v6 or v7 to be used
+
 ### 1.0.3
 
 - Allow Carbon v1 or v2 to be used
