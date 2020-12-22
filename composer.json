@@ -25,8 +25,8 @@
     "php": ">=7.2",
     "ext-curl": "*",
     "ext-json": "*",
-    "guzzlehttp/guzzle": "^6.3",
-    "nesbot/carbon": "^1|^2"
+    "guzzlehttp/guzzle": "^6 | ^7",
+    "nesbot/carbon": "^1 | ^2"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",
